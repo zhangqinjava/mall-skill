@@ -1,5 +1,59 @@
 spring:
   application:
     name: gateway-mall
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.1.2:8848
+    sentinel:
+      sentinel:
+        transport:
+          port: 8005
+          dashboard: localhost:8080
+#    gateway:
+#      routes:
+#        - id: product_route
+#          uri: lb://mall-product
+#          predicates:
+#            - Path=/app/product/**,/hello
+#          filters:
+#            - RewritePath=/app/(?<segment>/?.*), /$\{segment}
+#        - id: coupon_route
+#          uri: lb://mall-coupon
+#          predicates:
+#            - Path=/app/coupon/**
+#          filters:
+#            - RewritePath=/app/(?<segment>/?.*), /$\{segment}
+#        - id: third_route
+#          uri: lb://mall-third
+#          predicates:
+#            - Path=/app/third/**
+#          filters:
+#            - RewritePath=/app/third/(?<segment>/?.*), /$\{segment}
+#        - id: msbmall_host_route1
+#          uri: lb://mall-product
+#          predicates:
+#            - Host=mall.msb.com
+#        - id: msbmall_seckill_route2
+#          uri: lb://mall-seckill
+#          predicates:
+#            - Host=seckill.msb.com
+#        - id: msbmall_host_route3
+#          uri: lb://mall-search
+#          predicates:
+#            - Host=search.msb.com
+#        - id: msbmall_host_route4
+#          uri: lb://mall-auth
+#          predicates:
+#            - Host=auth.msb.com
+#        - id: msbmall_host_route5
+#          uri: lb://mall-cart
+#          predicates:
+#            - Host=cart.msb.com
+#        - id: msbmall_host_route6
+#          uri: lb://mall-order
+#          predicates:
+#            - Host=order.msb.com
+
 server:
   port: 8085

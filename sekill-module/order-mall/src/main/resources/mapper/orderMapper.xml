@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zq.mapper.OrderMapper">
+    <insert id="insert" parameterType="com.zq.bean.Order">
+        insert into order
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="orderId != null">order_id,</if>
+            <if test="orderDate != null">order_date,</if>
+            <if test="orderStatus != null">order_status,</if>
+            <if test="orderMoney != null">order_money,</if>
+            <if test="payId != null">pay_id,</if>
+            <if test="payStatus != null">pay_status,</if>
+            <if test="payTime != null">pay_time,</if>
+            <if test="userId != null">user_id,</if>
+            <if test="goodId != null">good_id,</if>
+            <if test="goodPrice != null">good_price,</if>
+            <if test="goodNum != null">good_number,</if>
+            cretee_time,update_time
+        VALUES
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="orderId != null">#{orderId},</if>
+            <if test="orderDate != null">#{orderDate},</if>
+            <if test="orderStatus != null">#{orderStatus},</if>
+            <if test="orderMoney != null">#{orderMoney},</if>
+            <if test="payId != null">#{payId},</if>
+            <if test="payStatus != null">#{payStatus},</if>
+            <if test="payTime != null">#{payTime},</if>
+            <if test="userId != null">#{userId},</if>
+            <if test="goodId != null">#{goodId},</if>
+            <if test="goodPrice != null">#{goodPrice},</if>
+            <if test="goodNum != null">#{goodNum},</if>
+            current_timestamp,current_timestamp
+        </trim>
+    </insert>
+    <update id="update" parameterType="com.zq.bean.OrderParam">
+        update order
+        <set>
+        <if test="orderStatus != null">order_status=#{orderStatus},</if>
+        <if test="payStatus != null">pay_status=#{payStatus},</if>
+        </set>
+        <where>
+            <if test="id != null">id=#{id},</if>
+            <if test="payId != null"> pay_id=#{payId},</if>
+            <if test="orderId != null">order_id=#{orderId},</if>
+        </where>
+
+    </update>
+    <delete id="delete">
+        delete from order
+    </delete>
+    <select id="findOrder" parameterType="com.zq.bean.OrderParam" resultType="com.zq.bean.Order">
+        select id,order_id,order_date,order_status,order_money,pay_id,pay_status,pay_time,user_id,goods_id,goods_number,goods_price,goods_name,
+               create_time,update_time from order
+        <where>
+            <if test="id != null"> and id=#{id},</if>
+            <if test="orderId != null"> and order_id=#{orderId},</if>
+            <if test="payId != null"> and pay_id=#{payId},</if>
+            <if test="orderStartDate != null and orderEndDate != null"> and order_date between #{orderStartDate} and #{orderEndDate},</if>
+        </where>
+    </select>
+</mapper>
