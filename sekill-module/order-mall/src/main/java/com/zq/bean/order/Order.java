@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotEmpty;
 import java.math.BigDecimal;
 
 @Data
@@ -19,10 +20,13 @@ public class Order {
     private int payStatus;
     private String payTime;
     private String userId;
-    private String goodsId;
-    private String goodsName;
-    private String goodsNumber;
+    private String goodId;
+    private String goodName;
+    private String goodNum;
     private BigDecimal goodsPrice=new BigDecimal(0);
+    private String receiver_name;
+    private String receiver_phone;
+    private String receiver_address;
     private String createTime;
     private String updateTime;
 }

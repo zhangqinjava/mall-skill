@@ -2,6 +2,7 @@ package com.zq.service.impl;
 
 import com.zq.bean.order.Order;
 import com.zq.bean.order.OrderParam;
+import com.zq.bean.order.OrderUpdateDto;
 import com.zq.mapper.OrderMapper;
 import com.zq.service.OrderService;
 import lombok.extern.slf4j.Slf4j;
@@ -21,10 +22,7 @@ public class OrderServiceImpl implements OrderService {
     private OrderMapper orderMapper;
     @Transactional(rollbackFor = Exception.class)   
     @Override
-    public String saveOrder(OrderParam orderParam) {
-        //封装order实例
-        Order order=new Order();
-        BeanUtils.copyProperties(orderParam,order);
+    public String saveOrder(Order order) {
         //保存订单
         orderMapper.insert(order);
         //扣减库存
@@ -32,12 +30,12 @@ public class OrderServiceImpl implements OrderService {
     }
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public String deleteOrder(OrderParam orderId) {
+    public String deleteOrder(String orderId) {
         return String.valueOf(orderMapper.delete(orderId));
     }
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public String updateOrder(OrderParam order) {
+    public String updateOrder(OrderUpdateDto order) {
         return String.valueOf(orderMapper.update(order));
     }
     @Override

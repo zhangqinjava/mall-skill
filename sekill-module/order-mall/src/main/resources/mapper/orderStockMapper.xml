@@ -4,30 +4,30 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zq.mapper.OrderStockMapper">
 
-    <update id="updateStockDel" parameterType="com.zq.bean.order.OrderParam">
+    <update id="updateStockDel" parameterType="com.zq.bean.order.Order">
         update stock
         <set>
-            <if test="goodsNum != null">
+            <if test="goodNum != null">
                 good_number=good_number-#{goodNum},
             </if>
         </set>
         <where>
-            <if test="goodsId != null">
-                and good_id=#{goodsId}
+            <if test="goodId != null">
+                and good_id=#{goodId}
             </if>
             and good_number>0;
         </where>
     </update>
-    <update id="updateStockIncr" parameterType="com.zq.bean.order.OrderParam">
+    <update id="updateStockIncr" parameterType="com.zq.bean.order.Order">
         update stock
         <set>
-            <if test="goodsNum != null">
+            <if test="goodNum != null">
                 good_number=good_number+#{goodNum},
             </if>
         </set>
         <where>
-            <if test="goodsId != null">
-                and good_id=#{goodsId}
+            <if test="goodId != null">
+                and good_id=#{goodId}
             </if>
         </where>
     </update>

@@ -6,6 +6,7 @@ import com.wechat.pay.java.service.payments.nativepay.NativePayService;
 import com.wechat.pay.java.service.payments.nativepay.model.Amount;
 import com.wechat.pay.java.service.payments.nativepay.model.PrepayRequest;
 import com.wechat.pay.java.service.payments.nativepay.model.PrepayResponse;
+import com.zq.bean.order.Order;
 import com.zq.bean.order.OrderParam;
 import com.zq.service.OrderPayService;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,7 @@ public class OrderPayServiceImpl implements OrderPayService {
     /** 商户APIV3密钥 */
     public static String apiV3Key = "...";
     @Override
-    public String pay(OrderParam orderParam) {
+    public String pay(Order orderParam) {
         Config config =
                 new RSAPublicKeyConfig.Builder()
                         .merchantId(merchantId)

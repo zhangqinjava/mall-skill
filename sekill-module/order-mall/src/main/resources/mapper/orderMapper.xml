@@ -17,6 +17,9 @@
             <if test="goodId != null">good_id,</if>
             <if test="goodPrice != null">good_price,</if>
             <if test="goodNum != null">good_number,</if>
+            <if test="receiver_name != null">receiver_name,</if>
+            <if test="receiver_phone != null">receiver_phone,</if>
+            <if test="receiver_address != null">receiver_address,</if>
             cretee_time,update_time
             </trim>
         VALUES
@@ -32,24 +35,35 @@
             <if test="goodId != null">#{goodId},</if>
             <if test="goodPrice != null">#{goodPrice},</if>
             <if test="goodNum != null">#{goodNum},</if>
+            <if test="receiver_name != null">#{receiver_name},</if>
+            <if test="receiver_phone != null">#{receiver_phone},</if>
+            <if test="receiver_address != null">#{receiver_address},</if>
             current_timestamp,current_timestamp
         </trim>
     </insert>
-    <update id="update" parameterType="com.zq.bean.order.OrderParam">
+    <update id="update" parameterType="com.zq.bean.order.OrderUpdateDto">
         update order
         <set>
         <if test="orderStatus != null">order_status=#{orderStatus},</if>
         <if test="payStatus != null">pay_status=#{payStatus},</if>
+        <if test="receiver_name != null">receiver_name=#{receiver_name},</if>
+        <if test="receiver_phone != null">receiver_phone=#{receiver_phone},</if>
+        <if test="receiver_address != null">receiver_address=#{receiver_address},</if>
+        update_time=current_timestamp
         </set>
         <where>
-            <if test="id != null">id=#{id},</if>
-            <if test="payId != null"> pay_id=#{payId},</if>
-            <if test="orderId != null">order_id=#{orderId},</if>
+            <if test="id != null">and id=#{id},</if>
+            <if test="payId != null"> and pay_id=#{payId},</if>
+            <if test="orderId != null"> and order_id=#{orderId},</if>
+            <if test="orderDate != null"> and order_date=#{orderDate},</if>
         </where>
 
     </update>
     <delete id="delete">
         delete from order
+        <where>
+            <if test="orderId != null">order_id=#{orderId},</if>
+        </where>
     </delete>
     <select id="findOrder" parameterType="com.zq.bean.order.OrderParam" resultType="com.zq.bean.order.Order">
         select id,order_id,order_date,order_status,order_money,pay_id,pay_status,pay_time,user_id,goods_id,goods_number,goods_price,goods_name,

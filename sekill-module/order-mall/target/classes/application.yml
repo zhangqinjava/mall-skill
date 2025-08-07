@@ -4,7 +4,7 @@ spring:
   application:
     name: order-mall
   datasource:
-    url: jdbc:mysql://10.10.67.155:3306/fshows_script?autoReconnect=true&useUnicode=true&characterEncoding=utf-8&autoReconnect=true
+    url: jdbc:mysql://localhost:3306/fshows_script?autoReconnect=true&useUnicode=true&characterEncoding=utf-8&autoReconnect=true
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: fshows_user
     password: 2W#17Ht!Vt7J
