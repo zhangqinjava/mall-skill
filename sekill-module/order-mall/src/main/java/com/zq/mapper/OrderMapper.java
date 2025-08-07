@@ -1,7 +1,7 @@
 package com.zq.mapper;
 
-import com.zq.bean.Order;
-import com.zq.bean.OrderParam;
+import com.zq.bean.order.Order;
+import com.zq.bean.order.OrderParam;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

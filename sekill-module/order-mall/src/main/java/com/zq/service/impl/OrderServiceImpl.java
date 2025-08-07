@@ -1,7 +1,7 @@
 package com.zq.service.impl;
 
-import com.zq.bean.Order;
-import com.zq.bean.OrderParam;
+import com.zq.bean.order.Order;
+import com.zq.bean.order.OrderParam;
 import com.zq.mapper.OrderMapper;
 import com.zq.service.OrderService;
 import lombok.extern.slf4j.Slf4j;
@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -25,16 +25,15 @@ public class OrderServiceImpl implements OrderService {
         //封装order实例
         Order order=new Order();
         BeanUtils.copyProperties(orderParam,order);
-        order.setOrderId(UUID.randomUUID().toString());
         //保存订单
         orderMapper.insert(order);
         //扣减库存
-        return String.valueOf(orderMapper.insert(order););
+        return String.valueOf(orderMapper.insert(order));
     }
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public int deleteOrder(OrderParam orderId) {
-        return orderMapper.delete(orderId);
+    public String deleteOrder(OrderParam orderId) {
+        return String.valueOf(orderMapper.delete(orderId));
     }
     @Transactional(rollbackFor = Exception.class)
     @Override
@@ -43,6 +42,7 @@ public class OrderServiceImpl implements OrderService {
     }
     @Override
     public List<Order> findOrder(OrderParam orderId) {
-        return Collections.emptyList();
+        List<Order> order = orderMapper.findOrder(orderId);
+        return order;
     }
 }

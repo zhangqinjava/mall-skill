@@ -1,4 +1,4 @@
-package com.zq.bean;
+package com.zq.bean.order;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

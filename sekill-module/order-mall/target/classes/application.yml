@@ -8,3 +8,4 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: fshows_user
     password: 2W#17Ht!Vt7J
+mapper-locations: classpath:mapper/*.xml
