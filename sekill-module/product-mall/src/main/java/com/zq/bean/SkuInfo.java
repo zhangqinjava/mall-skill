@@ -8,4 +8,5 @@ public class SkuInfo {
     private String skuAttr;
     private String skuAttrValue;
     private String skuDesc;
+
 }
