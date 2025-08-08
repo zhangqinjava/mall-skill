@@ -11,12 +11,12 @@ import java.util.concurrent.TimeUnit;
 public class MyThreadPoolConfig {
     @Bean
     public ThreadPoolExecutor threadPoolExecutor()
-    {
-        return new ThreadPoolExecutor(20
-                ,200
+    {    //根据自己度武器的配置以及业务来判断，
+        return new ThreadPoolExecutor(10
+                ,20
                 ,10
                 , TimeUnit.SECONDS
-                ,new LinkedBlockingQueue(10000)
+                ,new LinkedBlockingQueue(100)
                 , Executors.defaultThreadFactory()
                 ,new ThreadPoolExecutor.AbortPolicy()
         );
