@@ -24,11 +24,6 @@ import java.util.Map;
 @RestController
 @RequestMapping("/order")
 public class OrderController {
-    /**
-     * 保存订单
-     * @param order
-     * @return
-     */
     @Autowired
     private OrderService orderService;
     @Autowired
@@ -75,8 +70,9 @@ public class OrderController {
      * @return
      */
     @GetMapping("/refund")
-    public Result refund(@RequestParam @Valid OrderRefundDto orderRefundDto) {
-        return Wrapper.wrap(200,null);
+    public Result refund(@RequestParam @Valid OrderRefundDto orderRefundDto) throws Exception {
+        String str = orderOperationImpl.refundOrder(orderRefundDto);
+        return Wrapper.wrap(str=="退款申请成功"?200:500,str);
     }
 
 }

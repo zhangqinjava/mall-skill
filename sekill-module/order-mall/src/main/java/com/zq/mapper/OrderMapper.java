@@ -2,6 +2,7 @@ package com.zq.mapper;
 
 import com.zq.bean.order.Order;
 import com.zq.bean.order.OrderParam;
+import com.zq.bean.order.OrderRefundDto;
 import com.zq.bean.order.OrderUpdateDto;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -12,4 +13,5 @@ public interface OrderMapper {
     int update(OrderUpdateDto order);
     List<Order> findOrder(OrderParam orderId);
     int insert(Order order);
+    int insertRefund(OrderRefundDto orderRefund );
 }

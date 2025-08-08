@@ -6,6 +6,7 @@ import com.zq.bean.order.OrderRefundDto;
 import com.zq.bean.order.OrderSaveDto;
 import com.zq.mapper.OrderMapper;
 import com.zq.mapper.OrderStockMapper;
+import com.zq.service.impl.OrderServiceImpl;
 import org.hibernate.validator.internal.constraintvalidators.bv.NullValidator;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @Service
@@ -24,10 +26,6 @@ public class OrderOperationImpl {
     private OrderStockMapper orderStockMapper;
     @Autowired
     private OrderPayService orderPayService;
-    @Autowired
-    private OrderMapper orderMapper;
-    @Autowired
-    private NullValidator nullValidator;
 
     @Transactional(rollbackFor = Exception.class)
     public Map<Object,Object> operation(OrderSaveDto orderParam) throws Exception {
@@ -56,9 +54,19 @@ public class OrderOperationImpl {
         return map;
     }
     public String refundOrder(OrderRefundDto orderRefundDto) throws Exception {
-        //保存退款订单
-
-        return "ok";
+        OrderParam orderParam = new OrderParam();
+        BeanUtils.copyProperties(orderRefundDto, orderParam);
+        //查询原订单
+        List<Order> order = orderService.findOrder(orderParam);
+        if(order == null || order.size() == 0){
+            return "原订单不存在";
+        }
+        if(order.get(0).getOrderMoney().compareTo(orderRefundDto.getRefundAmount()) != 0){
+            return "退款金额和原订单金额不一致";
+        }
+        //插入退款表
+        orderService.refundOrder(orderRefundDto);
+        return "退款申请成功";
     }
 
 }

@@ -41,6 +41,29 @@
             current_timestamp,current_timestamp
         </trim>
     </insert>
+    <insert id="insertRefund" parameterType="com.zq.bean.order.OrderRefundDto">
+        insert into
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="refundNo != null">retund_no,</if>
+            <if test="refundDate != null">retund_date,</if>
+            <if test="orderId != null">order_id,</if>
+            <if test="refundType != null">retund_type,</if>
+            <if test="refundAmount!= null">retund_amount,</if>
+            <if test="refundReason != null">retund_reason,</if>
+            create_time,update_time,
+        </trim>
+        values
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="refundNo != null">#{refundNo},</if>
+            <if test="refundDate != null">#{refundDate},</if>
+            <if test="orderId != null">#{orderId},</if>
+            <if test="refundType != null">#{refundType},</if>
+            <if test="refundAmount!= null">#{refundAmount},</if>
+            <if test="refundReason != null">#{refundReason},</if>
+            current_timestamp,current_timestamp,
+        </trim>
+
+    </insert>
     <update id="update" parameterType="com.zq.bean.order.OrderUpdateDto">
         update order
         <set>
